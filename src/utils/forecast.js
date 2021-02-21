@@ -27,7 +27,14 @@ const forecast = (latitude,longitude , callback )=>{
       } else if  (response.body.cod=== '404') {
         callback('error is ' +body.message  , undefined)
       } else {
-        callback(undefined,body)
+        console.log(body)
+        //var myString = JSON.stringify(body.main);
+        //const data = JSON.parse(myString)
+        //console.log(data.temp)
+
+        callback(undefined,'temp is :' + body.main.temp + ' . minimum temp is :'+ body.main.temp_min + '. and wind is :' + body.wind.speed) // kilid hal moshkelat ferestadan yedone vahed prperty bud ***
+        // faghat body ro mifrestadim 
+        // API man ba video fargh dare be taaroz khordim 
       }
   
   

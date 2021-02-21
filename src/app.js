@@ -54,6 +54,8 @@ app.get('/weather', (req, res) => {
         } )
     }
 
+/**/ 
+
     geocode(location,(error,data)=>{ // agar data ro destructure kunim bayad meghdar {} bedim 
         if(error){
             return res.send({error})
@@ -62,9 +64,11 @@ app.get('/weather', (req, res) => {
             if(error){
                 return res.send({error})
             }
+
+            //console.log(forecastData)
             res.send({
                 error : error ,
-                weather : forecastData.main ,
+                weather :forecastData , // .main migereftim azash 
                 location : data.location 
             })
 
@@ -80,6 +84,36 @@ app.get('/weather', (req, res) => {
     //     adress : location
     // })
 })
+app.get('/pros', (req, res) => {  // agar bala mineveshtim kar nemikar !!!  /*inja */
+
+    if ( !req.query.address){
+        return res.send({
+            error: 'provide address'
+        })
+
+    }
+    const adres =  req.query.address
+    console.log(req.query.address)
+    res.send ({
+       location  : adres, 
+       tem : '8'
+
+    })
+
+})
+app.get('/products', (req, res) => {
+    if (!req.query.search) { // query. harchi bade noghte bashe hamoon bayad type she dar url 
+        return res.send({  // این ریتارن باعث میشه تابع تموم شه اجراش 
+           // >>> اگر ریتارن نبود کنسول پایین ارور میداد چون ریکوعست آندیفاین میشد 
+            error: 'You must provide a search term'
+        })
+    }
+
+    console.log(req.query.search) // >>> اینجا
+    res.send({
+        products: []
+    })
+})
 
 app.get('/help/*', (req, res) => {
     res.render('404', {
@@ -88,6 +122,8 @@ app.get('/help/*', (req, res) => {
         errorMessage: 'Help article not found.'
     })
 })
+
+
 
 app.get('*', (req, res) => {
     res.render('404', {

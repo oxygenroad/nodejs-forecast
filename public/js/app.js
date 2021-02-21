@@ -24,8 +24,9 @@ fetch ('/weather?adress='+location).then((response )=>{
         } else {
            // const stringData = JSON.stringify(data);
             massage1.textContent= data.location
-            massage2.textContent ='tempurter is: ' + data.weather.temp +' it feels like : '+ data.weather.feels_like
-
+            massage2.textContent =data.weather
+                //'tempurter is: ' + data.weather.temp +' it feels like : '+ data.weather.feels_like 
+                // alan dar file forcast moshakhas mikunim chi mikhaym 
             //console.log(data)
         }
         
